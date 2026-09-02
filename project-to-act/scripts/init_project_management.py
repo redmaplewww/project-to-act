@@ -9,12 +9,16 @@ import json
 import os
 import shutil
 import stat
+import time
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
 
 SCHEMA_VERSION = 1
 CONFIG_NAME = "PROJECT_CONFIG.json"
+INIT_LOCK_NAME = ".project-to-act.init.lock"
+INIT_LOCK_TIMEOUT_SECONDS = 5.0
 TEMPLATE_NAMES = (
     "PROJECT_OVERVIEW.md",
     "PROJECT_PROGRESS.md",
@@ -63,6 +67,28 @@ def _resolve_project_root(project_root: Path) -> Path:
     if not root.is_dir():
         raise ValueError(f"项目根路径不是目录：{root}")
     return root
+
+
+@contextmanager
+def _initialization_lock(project_root: Path):
+    lock_path = project_root / INIT_LOCK_NAME
+    _reject_link_or_reparse_point(lock_path, "初始化锁")
+    deadline = time.monotonic() + INIT_LOCK_TIMEOUT_SECONDS
+    descriptor: int | None = None
+    while descriptor is None:
+        try:
+            descriptor = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+        except FileExistsError:
+            _reject_link_or_reparse_point(lock_path, "初始化锁")
+            if time.monotonic() >= deadline:
+                raise OSError(f"等待并发初始化超时；确认没有活动进程后移除：{lock_path}")
+            time.sleep(0.01)
+    try:
+        os.write(descriptor, f"pid={os.getpid()}\n".encode("utf-8"))
+        yield
+    finally:
+        os.close(descriptor)
+        lock_path.unlink(missing_ok=True)
 
 
 def _template_payloads() -> list[tuple[str, bytes]]:
@@ -281,7 +307,17 @@ def _write_managed_files(
 
 def initialize(project_root: Path, *, dry_run: bool = False) -> dict[str, Any]:
     root = _resolve_project_root(project_root)
-    inspection = inspect_project(root)
+    if dry_run:
+        inspection = inspect_project(root)
+        return _initialize_from_inspection(root, inspection, dry_run=True)
+    with _initialization_lock(root):
+        inspection = inspect_project(root)
+        return _initialize_from_inspection(root, inspection, dry_run=False)
+
+
+def _initialize_from_inspection(
+    root: Path, inspection: dict[str, Any], *, dry_run: bool
+) -> dict[str, Any]:
     if inspection["mode"] == "external-ledger":
         raise ValueError("项目已采用现有账本，拒绝创建第二套管理文档")
     if inspection["mode"] == "legacy-managed":

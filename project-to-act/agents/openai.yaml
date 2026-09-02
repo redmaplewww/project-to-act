@@ -1,4 +1,4 @@
 interface:
   display_name: "Project to Act"
-  short_description: "发现并维护唯一项目账本，保护路线、证据与验收状态"
-  default_prompt: "使用 $project-to-act 检查当前项目的既有账本，并安全采用或维护唯一事实源。"
+  short_description: "维护唯一项目/任务事实源与三角色交接"
+  default_prompt: "使用 $project-to-act 检查当前项目的唯一事实源，恢复任务语义，并安全准备下一个角色交接。"

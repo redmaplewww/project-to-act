@@ -285,7 +285,7 @@ class InitializeProjectManagementTests(unittest.TestCase):
             root = Path(temp_dir)
             management = root / ".project-to-act"
             management.mkdir()
-            config = management / CONFIG_NAME
+            config = root.resolve() / ".project-to-act" / CONFIG_NAME
             original_is_symlink = Path.is_symlink
 
             def report_config_as_symlink(path):
@@ -299,7 +299,7 @@ class InitializeProjectManagementTests(unittest.TestCase):
         module = load_module()
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            ledger = root / "docs" / "project-ledger.md"
+            ledger = root.resolve() / "docs" / "project-ledger.md"
             original_is_symlink = Path.is_symlink
 
             def report_ledger_as_symlink(path):
@@ -398,7 +398,7 @@ class InitializeProjectManagementTests(unittest.TestCase):
             root = Path(temp_dir)
             management_dir = root / ".project-to-act"
             management_dir.mkdir()
-            collision = management_dir / "PROJECT_OVERVIEW.md"
+            collision = root.resolve() / ".project-to-act" / "PROJECT_OVERVIEW.md"
             original_is_symlink = Path.is_symlink
 
             def report_collision_as_symlink(path):
@@ -559,6 +559,18 @@ class InitializerCliTests(unittest.TestCase):
             self.assertEqual(
                 {path.name for path in (root / ".project-to-act").iterdir()}, set(EXPECTED_CREATED)
             )
+            self.assertFalse((root / ".project-to-act.init.lock").exists())
+
+    def test_stale_initialization_lock_fails_closed(self):
+        module = load_module()
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            lock = root / module.INIT_LOCK_NAME
+            lock.write_text("pid=999999\n", encoding="utf-8")
+            with mock.patch.object(module, "INIT_LOCK_TIMEOUT_SECONDS", 0.0):
+                with self.assertRaisesRegex(OSError, "等待并发初始化超时"):
+                    module.initialize(root)
+            self.assertTrue(lock.is_file())
 
 
 if __name__ == "__main__":

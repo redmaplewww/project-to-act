@@ -32,6 +32,22 @@ class SkillIdentityTests(unittest.TestCase):
             self.assertNotIn(LEGACY_SLUG, text, str(path))
             self.assertNotIn(LEGACY_TITLE, text, str(path))
 
+    def test_thin_team_handoff_fixture_is_test_only_and_owns_no_runtime(self):
+        fixture = REPO_ROOT / "tests" / "fixtures" / "team-handoff" / "SKILL.md"
+        self.assertTrue(fixture.is_file())
+        text = fixture.read_text(encoding="utf-8")
+        self.assertIn("Test-only", text)
+        self.assertIn("owns no schema, state, runtime, hook, event store, or writer", text)
+        self.assertFalse((REPO_ROOT / "project-to-act" / "team-handoff").exists())
+
+    def test_runtime_is_project_to_act_owned_and_explicitly_gated(self):
+        skill_text = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        runtime_text = (SKILL_ROOT / "scripts" / "task_runtime.py").read_text(encoding="utf-8")
+        self.assertIn("references/runtime-contract.md", skill_text)
+        self.assertIn("experimentalHandoffWrites", runtime_text)
+        self.assertIn("ENABLED_HANDOFF_TYPE", runtime_text)
+        self.assertTrue((SKILL_ROOT / "scripts" / "runtime_transaction.py").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()
