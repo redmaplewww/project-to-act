@@ -95,6 +95,8 @@ python <skill>/scripts/init_project_management.py --project-root <project> --mig
 <!-- project-to-act-redirect: .project-to-act/PROJECT_OVERVIEW.md -->
 ```
 
+新增命令包括 `--audit`、`--strict`、`--compact --dry-run`、`--compact`、`--restore-compaction` 和 `--reconcile-features`。其中审计和整理都默认保守处理，严格模式只把告警提升为失败，不会改变文档边界。
+
 ### 验证
 
 ```powershell

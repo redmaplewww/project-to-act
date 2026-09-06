@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "init_project_management.py"
+SCRIPT = Path(__file__).resolve().parents[1] / "project-to-act" / "scripts" / "init_project_management.py"
 SPEC = importlib.util.spec_from_file_location("project_to_act", SCRIPT)
 assert SPEC and SPEC.loader
 pta = importlib.util.module_from_spec(SPEC)
