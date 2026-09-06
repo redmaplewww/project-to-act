@@ -1,28 +1,47 @@
 {
-  "installed_at": "2026-08-27",
-  "source_root": "F:/Codex/project-to-act",
-  "installed_root": "C:/Users/zzg/.codex/skills/project-to-act",
+  "installed_at": "2026-09-07",
+  "source_root": "F:/codex/project-to-act",
+  "installed_root": "C:/Users/zzg/.agents/skills/project-to-act",
   "runtime_file_count": 9,
-  "missing_files": 0,
-  "extra_files": 0,
-  "hash_mismatches": 0,
-  "aggregate_manifest_sha256": "a5b16447e39d40d77fb8a6236d146478538f91aaa025fd283a14b06c33a7c87e",
-  "checks": {
-    "skill_quick_validate": "passed",
-    "installed_current_project_strict_audit": "passed",
-    "installed_new_project_initialize": "passed",
-    "installed_new_project_strict_validate": "passed",
-    "installed_new_project_compaction_dry_run": "passed"
-  },
   "files": [
-    {"path": "SKILL.md", "sha256": "807256d366ce4818325d93701f04760ca9d6f25b3605989b5ac25201a1891463"},
-    {"path": "agents/openai.yaml", "sha256": "b2654adbb6197558e896f5dcdf8c2caf41f2de74bca3263597e224cfead542f6"},
-    {"path": "assets/templates/PROJECT_OVERVIEW.md", "sha256": "2cdaed135e59c9741a14b5c9bef5a7a4f063144c46b9cbad2d2c81f46796a7cf"},
-    {"path": "assets/templates/PROJECT_PROGRESS.md", "sha256": "caf8d7e7fc36a4314f3a068f4077b2aa41dd1ecfd19e2064337f6f3d56fb1996"},
-    {"path": "assets/templates/PROJECT_VERSIONS.md", "sha256": "926144994864861ca1c42bde93b831f9dfd5fd51e34f1f92c73537f232d77afa"},
-    {"path": "assets/templates/PROJECT_FEATURES.md", "sha256": "2ba9ff309b9b9ae8adc6118470a61cdacc9f27747bdd7085246969cf8febc547"},
-    {"path": "assets/templates/PROJECT_ACCEPTANCE.md", "sha256": "47a5879b6ec546ba2dbd9798acc070d34bd8187eabd9600c05f47fe4e7f3af8f"},
-    {"path": "references/ledger-contract.md", "sha256": "e0439e28c9e6124ca12115013746ba67a29feb339296541a97c21422d7275374"},
-    {"path": "scripts/init_project_management.py", "sha256": "b2c343ed768e737793f0280c0e5d0d791e6942c3a081281d1b61c7224fd87a46"}
-  ]
+    {
+      "path": "SKILL.md",
+      "sha256": "3d035c9e217059b69670a5919c7d73f136d3e88118143043d942679d628e0622"
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "b2654adbb6197558e896f5dcdf8c2caf41f2de74bca3263597e224cfead542f6"
+    },
+    {
+      "path": "scripts/init_project_management.py",
+      "sha256": "efa8de742e1d4738e58bd1d0fa75b079d6a301b5c7ebb15aa6194b28ce4d0925"
+    },
+    {
+      "path": "references/ledger-contract.md",
+      "sha256": "b2bb42be6579c2844f0381f0d45fbb5d64177d36e87d5aab8d310ff5e7ed0dd1"
+    },
+    {
+      "path": "assets/templates/PROJECT_OVERVIEW.md",
+      "sha256": "2cdaed135e59c9741a14b5c9bef5a7a4f063144c46b9cbad2d2c81f46796a7cf"
+    },
+    {
+      "path": "assets/templates/PROJECT_PROGRESS.md",
+      "sha256": "117175cd4ad49294004809b8cb1bdc57044e97a5891f78a6534790479eea00c6"
+    },
+    {
+      "path": "assets/templates/PROJECT_FEATURES.md",
+      "sha256": "502667a9d0113f2bda3d499b6c8bcc5a80e554eea5e6bcd6619a7a5f4bed50ad"
+    },
+    {
+      "path": "assets/templates/PROJECT_VERSIONS.md",
+      "sha256": "926144994864861ca1c42bde93b831f9dfd5fd51e34f1f92c73537f232d77afa"
+    },
+    {
+      "path": "assets/templates/PROJECT_ACCEPTANCE.md",
+      "sha256": "47a5879b6ec546ba2dbd9798acc070d34bd8187eabd9600c05f47fe4e7f3af8f"
+    }
+  ],
+  "checks": {
+    "install_hash_match": "passed"
+  }
 }
