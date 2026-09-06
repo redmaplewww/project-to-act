@@ -1,0 +1,42 @@
+{
+  "observed_at": "2026-08-27",
+  "tool_schema": 2,
+  "source_projects_modified": false,
+  "temporary_copies_removed": true,
+  "samples": [
+    {
+      "sample": "office-platform",
+      "audit_errors": 0,
+      "audit_warnings": 15,
+      "compaction_candidates": 296,
+      "manual_review_sections": 0,
+      "active_bytes_before": 664251,
+      "active_bytes_after": 474645,
+      "reduced_bytes": 189606,
+      "post_compaction_valid": true,
+      "restored_files": 5,
+      "restored_bytes": 664251,
+      "byte_count_restored_exactly": true
+    },
+    {
+      "sample": "scientific-md",
+      "audit_errors": 0,
+      "audit_warnings": 12,
+      "compaction_candidates": 32,
+      "manual_review_sections": 2,
+      "compaction_executed": false
+    },
+    {
+      "sample": "ecommerce-platform",
+      "audit_errors": 4,
+      "audit_warnings": 12,
+      "duplicate_required_headings": [
+        "PROJECT_OVERVIEW.md:## 当前焦点",
+        "PROJECT_PROGRESS.md:## 当前任务",
+        "PROJECT_PROGRESS.md:## 阻塞项",
+        "PROJECT_PROGRESS.md:## 进度历史"
+      ],
+      "compaction_blocked": true
+    }
+  ]
+}

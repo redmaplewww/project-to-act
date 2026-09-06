@@ -1,0 +1,73 @@
+{
+  "version": "2.1.0",
+  "date": "2026-08-27",
+  "scope": "lightweight explicit feature reconciliation and compact progress summaries",
+  "verification": {
+    "unittest": {
+      "total": 19,
+      "passed": 18,
+      "skipped": 1,
+      "skip_reason": "Windows symbolic-link creation privilege unavailable"
+    },
+    "py_compile": "passed",
+    "ruff": "passed",
+    "skill_quick_validate": "passed",
+    "source_strict_audit": "passed"
+  },
+  "search_and_read_boundaries": {
+    "ordinary_check_validate_audit_resolve_sources": false,
+    "unconfigured_reconcile_source_files_read": 0,
+    "configured_first_reconcile_source_files_read": 2,
+    "unchanged_second_reconcile_status": "skipped",
+    "unchanged_second_reconcile_reason": "inputs_unchanged",
+    "unchanged_second_reconcile_source_files_read": 0,
+    "directories_and_globs_rejected": true,
+    "exclusive_lock_tested": true,
+    "output_contains_source_text": false
+  },
+  "token_measurement": {
+    "encoding": "o200k_base",
+    "comparison": [
+      {
+        "file": "SKILL.md",
+        "before": 667,
+        "after": 734,
+        "delta": 67,
+        "percent": 10.0,
+        "load_scope": "normal skill use"
+      },
+      {
+        "file": "references/ledger-contract.md",
+        "before": 764,
+        "after": 1046,
+        "delta": 282,
+        "percent": 36.9,
+        "load_scope": "feature reconciliation, migration, audit-rule changes, or compaction only"
+      },
+      {
+        "file": "assets/templates/PROJECT_FEATURES.md",
+        "before": 207,
+        "after": 219,
+        "delta": 12,
+        "percent": 5.8,
+        "load_scope": "new project initialization or template maintenance"
+      },
+      {
+        "file": "assets/templates/PROJECT_PROGRESS.md",
+        "before": 172,
+        "after": 180,
+        "delta": 8,
+        "percent": 4.7,
+        "load_scope": "new project initialization or template maintenance"
+      }
+    ]
+  },
+  "installation": {
+    "target": "C:/Users/zzg/.codex/skills/project-to-act",
+    "runtime_file_count": 9,
+    "missing": [],
+    "extra": [],
+    "hash_differences": [],
+    "aggregate_sha256": "5fa43df3aa0d7b38635e5a6d6b8c00a7db29981f173e60946d393a83f7939e20"
+  }
+}

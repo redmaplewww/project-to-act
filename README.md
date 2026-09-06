@@ -6,9 +6,11 @@
 
 - 先发现再配置：先检查已有账本，不因 Skill 被加载就自动写文件。
 - 唯一事实源：支持内置五文档和采用现有项目账本两种模式，拒绝并行维护两套状态。
+- 紧凑状态视图：五份主文档只保留当前状态、少量近期历史和可追溯引用，历史正文按月归档。
 - 路线与验收保护：范围冲突先确认，没有新鲜证据不声明完成。
+- 显式功能对账：`--reconcile-features` 只对账配置过的源文件，不做仓库级自动搜索。
 - 数据安全：项目文档按不可信数据处理，证据不保存密钥、完整个人信息或原始顾客对话。
-- 生命周期：支持 dry-run、旧版迁移、结构验证和并发安全创建。
+- 生命周期：支持 dry-run、旧版迁移、结构验证、审计、整理、恢复和并发安全创建。
 
 ## 两种模式
 
@@ -97,6 +99,8 @@ python <skill>/scripts/init_project_management.py --project-root <project> --mig
 
 ```powershell
 python <skill>/scripts/init_project_management.py --project-root <project> --validate
+python <skill>/scripts/init_project_management.py --project-root <project> --audit
+python <skill>/scripts/init_project_management.py --project-root <project> --compact --dry-run
 ```
 
 所有 CLI 成功结果输出 UTF-8 JSON，失败返回非零退出码。
@@ -124,6 +128,7 @@ python -X utf8 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.
 ├── project-to-act/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
+│   ├── references/ledger-contract.md
 │   ├── scripts/init_project_management.py
 │   └── assets/templates/
 └── tests/

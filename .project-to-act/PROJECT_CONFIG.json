@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "mode": "managed",
+  "feature_reconcile": {
+    "expected_sources": [],
+    "implemented_sources": [],
+    "max_files": 32,
+    "max_total_bytes": 2097152
+  },
+  "policy": {
+    "history_keep": 10,
+    "evidence_keep_unreferenced": 20,
+    "archive_partition": "monthly",
+    "size_warning_bytes": {
+      "PROJECT_OVERVIEW.md": 24576,
+      "PROJECT_PROGRESS.md": 32768,
+      "PROJECT_FEATURES.md": 65536,
+      "PROJECT_VERSIONS.md": 24576,
+      "PROJECT_ACCEPTANCE.md": 65536
+    }
+  }
+}
