@@ -1,5 +1,0 @@
-interface:
-  display_name: "Project to Act"
-  short_description: "维护紧凑项目事实源、归档历史并守住证据验收门"
-  default_prompt: "使用 $project-to-act 检查当前项目的唯一治理账本，按职责维护当前状态，并在需要时安全审计或归档历史。"
-
